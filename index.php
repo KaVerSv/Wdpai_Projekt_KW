@@ -1,4 +1,4 @@
 <?php
 
-echo 'boom 👋';
+echo 'time to say bye 👋';
  

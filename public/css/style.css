@@ -1,0 +1,273 @@
+body {
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.login-container {
+    background: linear-gradient(180deg, #3E3647 0%, #75509D 100%);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: inherit;
+}
+
+.shop-container {
+    background: linear-gradient(180deg, #3E3647 0%, #75509D 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: inherit;
+}
+
+.upper-border {
+    width: 100%;
+    height: 160px;
+
+    background: #302939;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.top-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 20%;
+}
+
+.top-buttons a {
+    font-size: 35px;
+    color: #a9a9ab;
+
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-decoration: none;
+}
+
+.top-buttons a:hover {
+    color: #dcdedf;
+}
+
+.resize2 {
+    height: 160px;
+}
+
+.resize {
+    width: 80%;
+    height: 80%;
+}
+
+.img-resize {
+    height: inherit;
+    width: auto;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+form > input, button {
+    /*margin: 0 1em 1em 1em;*/
+    padding-left: 0.5em;
+    border-radius: 5px;
+}
+
+.recommended {
+    width: auto;
+    height: 500px;
+    margin: 120px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.svg-button {
+    height: 100px;
+    width: 80px;
+    display: inline-block;
+    background: #302939;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.left {
+    transform: rotate(180deg);
+}
+
+.svg-button:hover {
+    background: linear-gradient(to right, #302939 20.0%, #6C5885 90%);
+}
+
+.featured {
+    width: 900px;
+    height: inherit;
+    background: rgba(217, 217, 217, 0.20);
+}
+
+.dots-container {
+    display: flex;
+    justify-content: center;
+    margin-top: -100px;
+}
+
+.dot {
+    width: 20px;
+    height: 15px;
+    flex-shrink: 0;
+    border-radius: 5px;
+    background: #776E82;
+
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.dot.active {
+    background-color: #302939;
+}
+
+input {
+    display: flex;
+    width: 30vh;
+    height: 50px;
+    color: #000000;
+    background: rgba(217, 217, 217, 0.20);
+
+    text-align: left;
+    font-family: Inter;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+button {
+    border-radius: 4px;
+    background: #965FD4;
+    cursor: pointer;
+    display: flex;
+    width: 530px;
+    height: 53px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+
+    color: #FFF;
+
+    text-align: center;
+    font-family: Inter;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.login button {
+    width: 90%;
+    height: 40px;
+    border-radius: 4px;
+    margin: 5px 0 5px 0;
+
+    background: #965FD4;
+    cursor: pointer;
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    color: #FFF;
+
+    text-align: center;
+    font-family: Inter;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.links a {
+    font-family: Inter;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    padding-left: 0.5em;
+    margin: 0 0em 0em 0.5em;
+    margin-right: 10px;
+    text-decoration: none;
+    color: #007bff;
+}
+
+label {
+    margin-bottom: 8px;
+    color: #FFF;
+
+    font-family: Inter;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.links a:hover {
+    text-decoration: underline;
+}
+
+.login input {
+    width: 90%;
+    height: 40px;
+    margin-bottom: 8px;
+}
+
+.remember-me-container {
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin: 5px 0 5px 0;
+}
+
+.remember-me-container input{
+    width: 30px;
+    height: 30px;
+}
+
+.remember-me-container label {
+    color: #FFF;
+    font-family: Inter;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.title {
+    color: #FFF;
+    font-family: Inter;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.dates {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: inherit;
+}

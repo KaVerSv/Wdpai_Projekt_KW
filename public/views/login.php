@@ -37,16 +37,12 @@
                     <label for="remember">Zapamiętaj mnie</label>
                 </div>
 
-                <button type="submit">Zaloguj się</button>
-
-                <button type="submit">continue with Google</button>
-                <button type="submit">continue with Facebook</button>
-                <button type="submit">continue with Apple</button>
-
-
+                <div class="center-this-item" >
+                    <button type="submit">Zaloguj się</button>
+                </div>
                 <div class="links">
-                <a href="Views\register.php">Utwórz konto</a>
-                <a href="Views\forgot_password.php">Zapomniałem hasła</a>
+                    <a href="register">Utwórz konto</a>
+                    <a href="forgot_password">Zapomniałem hasła</a>
                 </div>
             </form>
         </div>

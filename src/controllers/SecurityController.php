@@ -4,24 +4,53 @@ use models\User;
 
 require_once 'AppController.php';
 require_once __DIR__.'/../models/User.php';
+require_once __DIR__.'/../repository/UserRepository.php';
 
 class SecurityController extends AppController
 {
-    public function login() {
-        $user = new User('jsnow@gmail.com', 'admin', 'John', 'Snow');
+    public function login()
+    {
+        $userRepository = new UserRepository();
 
-        if ($this->isPost()) {
-            return $this->login('login');
+        if (!$this->isPost()) {
+            return $this->render('login');
         }
 
-        $email = $_POST["email"];
-        $password = $_POST["password"];
-        if ($user -> getEmail() !== $email) {
-            return $this-> render('login', ['messages' => ['User with this email does not exist']]);
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+
+        $user = $userRepository->getUser($email);
+
+        if (!$user) {
+            return $this->render('login', ['messages' => ['User not found!']]);
         }
-        if ($user -> getPassword() !== $password) {
-            return  $this->render('login', ['messages' => ['wrong password']]);
+
+        if ($user->getEmail() !== $email) {
+            return $this->render('login', ['messages' => ['User with this email not exist!']]);
         }
-        return  $this->render('shop');
+
+        if ($user->getPassword() !== $password) {
+            return $this->render('login', ['messages' => ['Wrong password!']]);
+        }
+
+        $url = "http://$_SERVER[HTTP_HOST]";
+        header("Location: {$url}/shop");
     }
+
+    public function register() {
+        return  $this->render('register');
+    }
+
+    public function forgot_password() {
+        return  $this->render('forgot_password');
+    }
+
+    public function profile() {
+        return  $this->render('profile');
+    }
+
+    public function library() {
+        return  $this->render('library');
+    }
+
 }

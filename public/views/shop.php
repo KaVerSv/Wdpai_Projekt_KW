@@ -10,10 +10,10 @@
         <div class="upper-border">
             <div class="top-buttons">
                 <img class="resize2" src="public\img\logo_luna_cut.png"/>
-                <a href="#" class="button"> shop </a>
+                <a href="shop" class="button"> shop </a>
                 <a href="#" class="button"> community </a>
-                <a href="#" class="button"> library </a>
-                <a href="#" class="button"> user </a>
+                <a href="library" class="button"> library </a>
+                <a href="profile" class="button"> user </a>
                 <div class="search-bar">
                     <form>
                         <input placeholder="search">

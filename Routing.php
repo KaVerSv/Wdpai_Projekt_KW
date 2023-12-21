@@ -16,10 +16,15 @@ class Routing {
     public static function run($url) {
         $action = explode("/", $url)[0];
 
+        // warunek dla braku argumentow -> strona glowna
+        if (empty($action)) {
+            $action = 'shop'; // Domyślna ścieżka dla pustego adresu
+        }
+
         if (!array_key_exists($action, self::$routes)) {
             die("Wrong url");
         }
-        $controller = self::$routes[$action];   
+        $controller = self::$routes[$action];
         $object = new $controller;
 
         $object->$action();

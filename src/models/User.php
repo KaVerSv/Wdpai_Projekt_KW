@@ -5,16 +5,18 @@ namespace models;
 class User
 {
     private  $email;
-    private  $password;
-    private  $name;
-    private $surname;
+    private  $username;
 
-    public function __construct(string $email, string $password,string $name,string $surname)
+    private  $dateOfBirth;
+
+    private  $password;
+
+    public function __construct(string $username, string $email, string $bithdate, string $password)
     {
         $this->email = $email;
         $this->password = $password;
-        $this->name = $name;
-        $this->surname = $surname;
+        $this->username = $username;
+        $this->dateOfBirth = new \DateTime($bithdate);
     }
 
     public function getPassword(): string
@@ -37,29 +39,21 @@ class User
         $this->email = $email;
     }
 
-    public function getName(): string
-    {
-        return $this->name;
+    public function setUsername(string $username) {
+        $this->username = $username;
     }
 
-    public function setName(string $name)
-    {
-        $this->name = $name;
+    public function getUsername(): string {
+        return $this->username;
     }
 
-    public function getSurname(): string
+    public function getDateOfBirth(): \DateTime
     {
-        return $this->surname;
+        return $this->dateOfBirth;
     }
 
-    public function setSurname(string $surname)
+    public function setDateOfBirth(string $dateOfBirth)
     {
-        $this->surname = $surname;
+        $this->dateOfBirth = new \DateTime($dateOfBirth);
     }
-
-
-
-
-
-
 }

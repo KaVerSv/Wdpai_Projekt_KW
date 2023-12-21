@@ -24,4 +24,13 @@ class SecurityController extends AppController
         }
         return  $this->render('shop');
     }
+
+    public function register() {
+        return  $this->render('register');
+    }
+
+    public function forgot_password() {
+        return  $this->render('forgot_password');
+    }
+
 }

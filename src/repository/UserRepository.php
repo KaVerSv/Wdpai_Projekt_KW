@@ -23,10 +23,29 @@ class UserRepository extends  Repository
         }
 
         return new User(
-            $user['username'],
             $user['email'],
-            $user['birthdate'],
-            $user['password']
+            $user['username'],
+            $user['password'],
+            $user['birthdate']
         );
     }
+
+    public function addUser(User $user)
+    {
+        $stmt = $this->database->connect()->prepare('
+        INSERT INTO users (email, username, password, birthdate)
+        VALUES (?, ?, ?, ?)
+        ');
+
+        // Convert DateTime to string using format method
+        $birthdateString = $user->getBirthDate()->format('Y-m-d');
+
+        $stmt->execute([
+            $user->getEmail(),
+            $user->getUsername(),
+            $user->getPassword(),
+            $birthdateString  // Use the formatted string here
+        ]);
+    }
+
 }

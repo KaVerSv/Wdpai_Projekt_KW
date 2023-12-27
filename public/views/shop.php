@@ -38,18 +38,39 @@
                 <img src="public/img/arrow-right.svg" alt="SVG Button">
             </button>
         </div>
+
         <div class="dots-container">
             <!-- Dodaj 7 kropek -->
             <div class="dot active" onclick="showImage(0)"></div>
             <div class="dot" onclick="showImage(1)"></div>
             <div class="dot" onclick="showImage(2)"></div>
+            <div class="dot" onclick="showImage(3)"></div>
+            <div class="dot" onclick="showImage(4)"></div>
+            <div class="dot" onclick="showImage(5)"></div>
+            <div class="dot" onclick="showImage(6)"></div>
             <!-- Dodaj pozostałe kropki -->
         </div>
 
+
+
         <div class="table">
-            
 
         </div>
+
+        <?php
+        // Assuming $books is an array of Book objects
+        $images = [];
+
+        if (isset($books)) {
+            foreach ($books as $book) {
+                // Assuming each Book object has an "image" property
+                $images[] = $book->getImage();
+            }
+        }
+
+        // Convert PHP array to JavaScript array
+        $jsArray = json_encode($images);
+        ?>
 
     </div>
 
@@ -57,12 +78,8 @@
 
     <script>
         var currentImageIndex = 0;
-        var images = [
-            "public/img/recommended/Mountains_of_Madness.jpg",
-            "public/img/recommended/Hobbit.jpg",
-            "public/img/recommended/1984.jpg"
-            // Dodaj pozostałe ścieżki do obrazów
-        ];
+        var images = <?php echo $jsArray; ?>;
+
 
         function showImage(index) {
             var imageContainer = document.querySelector(".featured img");

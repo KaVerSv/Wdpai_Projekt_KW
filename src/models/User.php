@@ -6,12 +6,10 @@ class User
 {
     private  $email;
     private  $username;
-
     private  $dateOfBirth;
-
     private  $password;
 
-    public function __construct(string $username, string $email, string $bithdate, string $password)
+    public function __construct(string $email, string $username, string $password, string $bithdate)
     {
         $this->email = $email;
         $this->password = $password;
@@ -47,7 +45,7 @@ class User
         return $this->username;
     }
 
-    public function getDateOfBirth(): \DateTime
+    public function getBirthDate(): \DateTime
     {
         return $this->dateOfBirth;
     }

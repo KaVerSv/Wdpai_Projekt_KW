@@ -15,14 +15,7 @@
 
         <div class="form-container">
             <form class="login" action="login" method="POST">
-                <div class "messages">
-                    <?php if (isset($messages)) {
-                        foreach ($messages as $message) {
-                            echo $message;
-                        }
-                    }
-                    ?>
-                </div>
+
                 <p class="title">Log in</p>
 
                 <label for="email">Login/email:</label>
@@ -40,6 +33,16 @@
                 <div class="center-this-item" >
                     <button type="submit">Zaloguj się</button>
                 </div>
+
+                <div class="messages">
+                    <?php if (isset($messages)) {
+                        foreach ($messages as $message) {
+                            echo $message;
+                        }
+                    }
+                    ?>
+                </div>
+
                 <div class="links">
                     <a href="register">Utwórz konto</a>
                     <a href="forgot_password">Zapomniałem hasła</a>

@@ -25,14 +25,15 @@
 
         <div class="recommended">
 
-
             <button onclick="prevImage()" class="svg-button left">
                 <img src="public/img/arrow-right.svg" alt="SVG Button">
             </button>
 
+
             <div class="featured">
                 <img class="img-resize image-container" src="public/img/recommended/Mountains_of_Madness.jpg" alt="Image 1">
             </div>
+
 
             <button onclick="nextImage()" class="svg-button">
                 <img src="public/img/arrow-right.svg" alt="SVG Button">
@@ -59,12 +60,23 @@
 
         <?php
         // Assuming $books is an array of Book objects
+        $id = [];
         $images = [];
+        $titles = [];
+        $descriptions = [];
+        $author = [];
+        $prices = [];
+        $publish_date = [];
 
         if (isset($books)) {
             foreach ($books as $book) {
-                // Assuming each Book object has an "image" property
+                $id[] = $book->getId();
                 $images[] = $book->getImage();
+                $titles[] = $book->getTitle();
+                $descriptions[] = $book->getDescription();
+                $author[] = $book->getAuthor();
+                $prices[] = $book->getTitle();
+                $publish_date[] = $book->getPublishDate();
             }
         }
 

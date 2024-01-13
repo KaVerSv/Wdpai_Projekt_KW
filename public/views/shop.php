@@ -35,7 +35,7 @@
                     <h2 id="book-title"></h2>
                     <p id="book-author"></p>
                     <p id="book-description"></p>
-                    <p id="book-price"></p>
+                    <p class="price" id="book-price"></p>
                 </div>
             </div>
 
@@ -120,8 +120,8 @@
             // Ustaw informacje o książce
             titleElement.textContent = titles[index];
             authorElement.textContent = "Author: " + authors[index];
-            descriptionElement.textContent = "Description: " + descriptions[index];
-            priceElement.textContent = "Price: $" + prices[index];
+            descriptionElement.textContent = descriptions[index];
+            priceElement.textContent = prices[index] + "zł" ;
 
             // Usuń aktywność ze wszystkich kropek
             var dots = document.querySelectorAll(".dot");
@@ -149,7 +149,6 @@
             // Przekieruj do widoku book_page z odpowiednim ID
             window.location.href = "book_page?id=" + currentBookId;
         }
-
 
         document.addEventListener("DOMContentLoaded", function() {
             // Wywołaj funkcję showImage z indeksem 0 po załadowaniu strony

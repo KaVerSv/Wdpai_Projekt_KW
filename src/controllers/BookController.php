@@ -63,4 +63,10 @@ class BookController extends AppController {
         $recomended_books = $this->bookRepository->getTable(1);
         $this->render('shop', ['books' => $recomended_books]);
     }
+
+    public function book_page() {
+        $bookId = $_GET['id'];
+        $book = $this->bookRepository->getBook($bookId);
+        $this->render('book_page', ['book' => $book]);
+    }
 }

@@ -29,11 +29,15 @@
                 <img src="public/img/arrow-right.svg" alt="SVG Button">
             </button>
 
-
-            <div class="featured">
+            <div class="featured" onclick="goToBookPage()">
                 <img class="img-resize image-container" src="public/img/recommended/Mountains_of_Madness.jpg" alt="Image 1">
+                <div class="book-info">
+                    <h2 id="book-title"></h2>
+                    <p id="book-author"></p>
+                    <p id="book-description"></p>
+                    <p id="book-price"></p>
+                </div>
             </div>
-
 
             <button onclick="nextImage()" class="svg-button">
                 <img src="public/img/arrow-right.svg" alt="SVG Button">
@@ -74,14 +78,19 @@
                 $images[] = $book->getImage();
                 $titles[] = $book->getTitle();
                 $descriptions[] = $book->getDescription();
-                $author[] = $book->getAuthor();
-                $prices[] = $book->getTitle();
+                $authors[] = $book->getAuthor();
+                $prices[] = $book->getPrice();
                 $publish_date[] = $book->getPublishDate();
             }
         }
 
         // Convert PHP array to JavaScript array
         $jsArray = json_encode($images);
+        $jsTitles = json_encode($titles);
+        $jsAuthors = json_encode($authors);
+        $jsDescriptions = json_encode($descriptions);
+        $jsPrices = json_encode($prices);
+        $jsId = json_encode($id);
         ?>
 
     </div>
@@ -91,11 +100,28 @@
     <script>
         var currentImageIndex = 0;
         var images = <?php echo $jsArray; ?>;
+        var titles = <?php echo $jsTitles; ?>;
+        var authors = <?php echo $jsAuthors; ?>;
+        var descriptions = <?php echo $jsDescriptions; ?>;
+        var prices = <?php echo $jsPrices; ?>;
+        var id = <?php echo $jsId; ?>;
 
 
         function showImage(index) {
             var imageContainer = document.querySelector(".featured img");
             imageContainer.src = images[index];
+
+            // Pobierz elementy info o książce
+            var titleElement = document.getElementById("book-title");
+            var authorElement = document.getElementById("book-author");
+            var descriptionElement = document.getElementById("book-description");
+            var priceElement = document.getElementById("book-price");
+
+            // Ustaw informacje o książce
+            titleElement.textContent = titles[index];
+            authorElement.textContent = "Author: " + authors[index];
+            descriptionElement.textContent = "Description: " + descriptions[index];
+            priceElement.textContent = "Price: $" + prices[index];
 
             // Usuń aktywność ze wszystkich kropek
             var dots = document.querySelectorAll(".dot");
@@ -104,6 +130,7 @@
             // Dodaj aktywność tylko dla wybranej kropki
             dots[index].classList.add("active");
         }
+
 
         function prevImage() {
             currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
@@ -114,6 +141,20 @@
             currentImageIndex = (currentImageIndex + 1) % images.length;
             showImage(currentImageIndex);
         }
+
+        function goToBookPage() {
+            // Otrzymaj ID aktualnie wyświetlanej książki
+            var currentBookId = id[currentImageIndex];
+
+            // Przekieruj do widoku book_page z odpowiednim ID
+            window.location.href = "book_page?id=" + currentBookId;
+        }
+
+
+        document.addEventListener("DOMContentLoaded", function() {
+            // Wywołaj funkcję showImage z indeksem 0 po załadowaniu strony
+            showImage(0);
+        });
     </script>
 </body>
 </html>

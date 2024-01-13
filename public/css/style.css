@@ -32,6 +32,7 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     height: inherit;
+    overflow: auto;
 }
 
 .upper-border {
@@ -136,6 +137,29 @@ form > input, button {
     width: 900px;
     height: inherit;
     background: rgba(217, 217, 217, 0.20);
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+}
+
+h2 {
+    font-size: 40px;
+    color: #ffffff;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-decoration: none;
+}
+
+p {
+    font-size: 20px;
+    color: #ffffff;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-decoration: none;
 }
 
 .dots-container {

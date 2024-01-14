@@ -135,14 +135,7 @@ form > input, button {
     background: linear-gradient(to right, #302939 20.0%, #6C5885 90%);
 }
 
-.featured {
-    width: 900px;
-    height: inherit;
-    background: rgba(217, 217, 217, 0.20);
-    cursor: pointer;
-    display: flex;
-    flex-direction: row;
-}
+
 
 h2 {
     font-size: 40px;
@@ -172,29 +165,7 @@ h2 {
     text-decoration: none;
 }
 
-.price {
-    float: right;
-    clear: both;
-    margin-right: 50px;
-    margin-left: auto;
-}
 
-.dots-container {
-    display: flex;
-    justify-content: center;
-    margin-top: -100px;
-}
-
-.dot {
-    width: 20px;
-    height: 15px;
-    flex-shrink: 0;
-    border-radius: 5px;
-    background: #776E82;
-
-    margin: 0 5px;
-    cursor: pointer;
-}
 
 .dot.active {
     background-color: #302939;

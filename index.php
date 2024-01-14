@@ -16,6 +16,7 @@ Routing::get('forgot_password','SecurityController');
 Routing::get('profile','SecurityController');
 Routing::get('library','BookController');
 Routing::get('search','BookController');
+Routing::get('cart','BookController');
 
 
 Routing::run($path);

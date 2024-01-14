@@ -23,11 +23,14 @@
         </div>
     </div>
 
+
     <div class="library-container">
         <div class="user-books-container">
             <?php
 
-
+                if (isset($books)) {
+                    var_dump($books);
+                }
 
             ?>
 

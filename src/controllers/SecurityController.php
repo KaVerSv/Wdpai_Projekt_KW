@@ -34,6 +34,11 @@ class SecurityController extends AppController
             return $this->render('login', ['messages' => ['Sprawdź swoją nazwę konta oraz hasło i spróbuj ponownie.']]);
         }
 
+        $_SESSION['userId'] = $user->getUserId();
+        $_SESSION['email'] = $user->getEmail();
+        $_SESSION['username'] = $user->getUsername();
+        $_SESSION['dateOfBirth'] = $user->getBirthDate();
+
         $url = "http://$_SERVER[HTTP_HOST]";
         header("Location: {$url}/shop");
     }
@@ -67,9 +72,21 @@ class SecurityController extends AppController
     }
 
     public function profile() {
-        return  $this->render('profile');
+        if (!isset($_SESSION['userId'])) {
+            return $this->render('login');
+        }
+
+        return $this->render('profile');
     }
 
+    public function logout()
+    {
+        // Zakończenie sesji
+        session_unset();
+        session_destroy();
 
+        // Przekierowanie na stronę logowania
+        header("Location: /shop"); // Możesz dostosować ścieżkę do własnych potrzeb
+    }
 
 }

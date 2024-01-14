@@ -19,7 +19,6 @@ class BookController extends AppController {
         $this->bookRepository = new BookRepository();
     }
 
-
     public function search()
     {
         $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
@@ -50,8 +49,19 @@ class BookController extends AppController {
     }
 
     public function library() {
-        $user_books = $this->bookRepository->getUserBooks(1);
+        if (!isset($_SESSION['userId'])) {
+            return $this->render('login');
+        }
+        $user_books = $this->bookRepository->getUserBooks($_SESSION['userId']);
         return  $this->render('library', ['books' => $user_books]);
+    }
+
+    public function cart() {
+        if (!isset($_SESSION['userId'])) {
+            return $this->render('login');
+        }
+        $user_books = $this->bookRepository->getUserCart($_SESSION['userId']);
+        return  $this->render('cart', ['books' => $user_books]);
     }
 
     public function index() {
@@ -64,13 +74,6 @@ class BookController extends AppController {
         $this->render('shop', ['books' => $recomended_books]);
     }
 
-    /*
-    public function book_page() {
-        $id = $_GET['id'] ?? null;
-        $book = $this->bookRepository->getBook($id);
-        $this->render('book_page', ['book' => $book]);
-    }
-    */
     public function book_page($queryParams = []) {
         $id = $queryParams['id'] ?? null;
 
@@ -81,5 +84,36 @@ class BookController extends AppController {
             // Obsługa błędu braku ID w żądaniu
             die("Missing ID in request");
         }
+    }
+
+    public function addToCart() {
+        if (!isset($_SESSION['userId'])) {
+            return $this->render('login');
+        }
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (isset($_POST['book_id'])) {
+                $book_id = $_POST['book_id'];
+
+                // Pobierz aktualny koszyk z sesji lub utwórz nowy, jeśli nie istnieje
+                $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
+
+                // Sprawdź, czy książka już istnieje w koszyku
+                if (!in_array($book_id, $cart)) {
+                    // Dodaj książkę do koszyka
+                    $cart[] = $book_id;
+
+                    // Zapisz koszyk z powrotem do sesji
+                    $_SESSION['cart'] = $cart;
+
+                    // Przekieruj użytkownika na stronę z książką po dodaniu do koszyka
+                    header('Location: book_page.php?book_id=' . $book_id);
+                    exit();
+                } else {
+                    // Jeśli książka już istnieje w koszyku, możesz obsłużyć to odpowiednim komunikatem lub akcją
+                    echo "Książka już znajduje się w koszyku.";
+                }
+            }
+        }
+        exit();
     }
 }

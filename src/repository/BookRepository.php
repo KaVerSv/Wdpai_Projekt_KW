@@ -27,7 +27,9 @@ class BookRepository extends Repository
             $book['publish_date'],
             $book['description'],
             $book['price'],
-            $book['image']
+            $book['image'],
+            $book['likes'],
+            $book['dislikes']
         );
     }
 
@@ -49,10 +51,11 @@ class BookRepository extends Repository
                 $book['publish_date'],
                 $book['description'],
                 $book['price'],
-                $book['image']
+                $book['image'],
+                $book['likes'],
+                $book['dislikes']
             );
         }
-
         return $result;
     }
 
@@ -103,7 +106,9 @@ class BookRepository extends Repository
                 $book['publish_date'],
                 $book['description'],
                 $book['price'],
-                $book['image']
+                $book['image'],
+                $book['likes'],
+                $book['dislikes']
             );
         }
 
@@ -139,9 +144,50 @@ class BookRepository extends Repository
                 $book['publish_date'],
                 $book['description'],
                 $book['price'],
-                $book['image']
+                $book['image'],
+                $book['likes'],
+                $book['dislikes']
             );
         }
+        return $result;
+    }
+
+    public function getUserCart(int $id): ?array {
+        $stmt = $this->database->connect()->prepare('       
+        SELECT books.*
+        FROM carts
+        JOIN books ON carts.book_id = books.id
+        WHERE carts.user_id = :id;
+    ');
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+        if (!$stmt->execute()) {
+            // Obsługa błędu wykonania zapytania
+            return null;
+        }
+
+        $books = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if (empty($books)) {
+            return null;
+        }
+
+        $result = [];
+
+        foreach ($books as $book) {
+            $result[] = new Book(
+                $book['id'],
+                $book['title'],
+                $book['author'],
+                $book['publish_date'],
+                $book['description'],
+                $book['price'],
+                $book['image'],
+                $book['likes'],
+                $book['dislikes']
+            );
+        }
+
         return $result;
     }
 }

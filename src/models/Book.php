@@ -11,8 +11,10 @@ class Book
     private $description;
     private $price;
     private $image;
+    private $likes;
+    private $dislikes;
 
-    public function __construct($id,$title, $author, $publish_date, $description, $price, $image)
+    public function __construct($id,$title, $author, $publish_date, $description, $price, $image, $likes, $dislikes)
     {
         $this->id = $id;
         $this->title = $title;
@@ -21,8 +23,19 @@ class Book
         $this->description = $description;
         $this->price = $price;
         $this->image = $image;
+        $this->likes = $likes;
+        $this->dislikes = $dislikes;
     }
 
+    public function getLikes()
+    {
+        return $this->likes;
+    }
+
+    public function getDislikes()
+    {
+        return $this->dislikes;
+    }
 
     public function getImage()
     {

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="public\css\style.css">
+    <link rel="stylesheet" href="public\css\shop.css">
     <title>Luna</title>
 </head>
 <body>
@@ -12,8 +13,15 @@
                 <img class="resize2" src="public\img\logo_luna_cut.png"/>
                 <a href="shop" class="button"> shop </a>
                 <a href="library" class="button"> library </a>
-                <a href="profile" class="button"> log in </a>
-                <a href="#" class="button">
+                <?php
+                    if (isset($_SESSION['userId'])) {
+                        $username = $_SESSION['username'];
+                        echo '<a href="profile" class="button">' . $username . '</a>';
+                    } else {
+                        echo '<a href="login" class="button">log in</a>';
+                    }
+                ?>
+                <a href="cart" class="button">
                     <div>
                         koszyk
                         <img class="cart" src="public/img/cart-shopping-white.svg" alt="SVG Button">
@@ -40,7 +48,7 @@
                     <h2 id="book-title"></h2>
                     <p id="book-author"></p>
                     <p id="book-description"></p>
-                    <p class="price" id="book-price"></p>
+
                 </div>
             </div>
 
@@ -48,18 +56,26 @@
                 <img src="public/img/arrow-right.svg" alt="SVG Button">
             </button>
         </div>
+        <div>
+            <div class="dots-container">
+                <!-- Dodaj 7 kropek -->
+                <div class="dot active" onclick="showImage(0)"></div>
+                <div class="dot" onclick="showImage(1)"></div>
+                <div class="dot" onclick="showImage(2)"></div>
+                <div class="dot" onclick="showImage(3)"></div>
+                <div class="dot" onclick="showImage(4)"></div>
+                <div class="dot" onclick="showImage(5)"></div>
+                <div class="dot" onclick="showImage(6)"></div>
+                <!-- Dodaj pozostałe kropki -->
+            </div>
 
-        <div class="dots-container">
-            <!-- Dodaj 7 kropek -->
-            <div class="dot active" onclick="showImage(0)"></div>
-            <div class="dot" onclick="showImage(1)"></div>
-            <div class="dot" onclick="showImage(2)"></div>
-            <div class="dot" onclick="showImage(3)"></div>
-            <div class="dot" onclick="showImage(4)"></div>
-            <div class="dot" onclick="showImage(5)"></div>
-            <div class="dot" onclick="showImage(6)"></div>
-            <!-- Dodaj pozostałe kropki -->
         </div>
+        <div class="center-this-item">
+            <div class="price-container"onclick="goToBookPage()">
+                <p class="price" id="book-price"></p>
+            </div>
+        </div>
+
 
 
 

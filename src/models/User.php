@@ -4,13 +4,15 @@ namespace models;
 
 class User
 {
+    private  $userID;
     private  $email;
     private  $username;
     private  $dateOfBirth;
     private  $password;
 
-    public function __construct(string $email, string $username, string $password, string $bithdate)
+    public function __construct(int $userID, string $email, string $username, string $password, string $bithdate)
     {
+        $this->userID = $userID;
         $this->email = $email;
         $this->password = $password;
         $this->username = $username;
@@ -20,6 +22,11 @@ class User
     public function getPassword(): string
     {
         return $this->password;
+    }
+
+    public function getUserId(): int
+    {
+        return $this->userID;
     }
 
     public function setPassword(string $password)

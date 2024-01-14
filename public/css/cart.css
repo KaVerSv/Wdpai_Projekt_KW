@@ -120,3 +120,28 @@
     text-decoration: none;
 }
 
+.total button {
+
+    width: 50px;
+    height: inherit;
+    background: #7da10e;
+    width: auto;
+    padding-right: 15px;
+    cursor: pointer;
+}
+
+.add-to-cart-button {
+    background: #7da10e;
+    width: auto;
+    padding-right: 10px;
+    cursor: pointer;
+    margin-right: 15px;
+    border-radius: 5px;
+    margin-top: 50px;
+}
+
+.add-to-cart-button:hover {
+    background: #6fa720;
+    background: -webkit-linear-gradient( top, #6fa720 5%, #588a1b 95%);
+    background: linear-gradient( to bottom, #6fa720 5%, #588a1b 95%);
+}

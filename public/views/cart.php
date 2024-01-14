@@ -67,6 +67,9 @@
                     // Wyświetl łączną kwotę zamówienia po zakończeniu pętli
                     echo '<div class="total">';
                         echo '<p>Total: ' . number_format($totalPrice, 2) . " zł" . '</p>'; // Formatuj kwotę do dwóch miejsc po przecinku
+                        echo '<div class="end">';
+                            echo '<input type="submit" onclick="buy()" value="Buy" class="add-to-cart-button">';
+                        echo '</div>';
                     echo '</div>';
                 } else {
                     echo '<p>Your cart is empty</p>';

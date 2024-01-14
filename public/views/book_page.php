@@ -11,9 +11,10 @@
         <div class="top-buttons">
             <img class="resize2" src="public\img\logo_luna_cut.png"/>
             <a href="shop" class="button"> shop </a>
-            <a href="#" class="button"> community </a>
             <a href="library" class="button"> library </a>
-            <a href="profile" class="button"> user </a>
+            <a href="profile" class="button"> log in </a>
+            <i class="fa-solid fa-cart-shopping"></i>
+            <a href="#" class="button"> koszyk </a>
             <div class="search-bar">
                 <form>
                     <input placeholder="search">

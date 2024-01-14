@@ -154,8 +154,16 @@ h2 {
     text-decoration: none;
 }
 
-p {
+.cart {
+    width: 40px;
+    height: auto;
+    position: relative;
+    top: 5px;
+}
+
+.featured p {
     font-size: 20px;
+    margin-right: 20px;
     color: #ffffff;
     font-family: Inter;
     font-style: normal;

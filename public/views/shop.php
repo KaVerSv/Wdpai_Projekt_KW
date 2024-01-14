@@ -11,9 +11,15 @@
             <div class="top-buttons">
                 <img class="resize2" src="public\img\logo_luna_cut.png"/>
                 <a href="shop" class="button"> shop </a>
-                <a href="#" class="button"> community </a>
                 <a href="library" class="button"> library </a>
-                <a href="profile" class="button"> user </a>
+                <a href="profile" class="button"> log in </a>
+                <a href="#" class="button">
+                    <div>
+                        koszyk
+                        <img class="cart" src="public/img/cart-shopping-white.svg" alt="SVG Button">
+                    </div>
+                </a>
+
                 <div class="search-bar">
                     <form>
                         <input placeholder="search">
@@ -21,7 +27,6 @@
                 </div>
             </div>
         </div>
-
 
         <div class="recommended">
 
@@ -148,6 +153,8 @@
 
             // Przekieruj do widoku book_page z odpowiednim ID
             window.location.href = "book_page?id=" + currentBookId;
+
+            //window.location.href = "book_page/id=" + currentBookId;
         }
 
         document.addEventListener("DOMContentLoaded", function() {

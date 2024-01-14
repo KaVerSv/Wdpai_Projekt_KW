@@ -64,9 +64,22 @@ class BookController extends AppController {
         $this->render('shop', ['books' => $recomended_books]);
     }
 
+    /*
     public function book_page() {
-        $bookId = $_GET['id'];
-        $book = $this->bookRepository->getBook($bookId);
+        $id = $_GET['id'] ?? null;
+        $book = $this->bookRepository->getBook($id);
         $this->render('book_page', ['book' => $book]);
+    }
+    */
+    public function book_page($queryParams = []) {
+        $id = $queryParams['id'] ?? null;
+
+        if ($id !== null) {
+            $book = $this->bookRepository->getBook($id);
+            $this->render('book_page', ['book' => $book]);
+        } else {
+            // Obsługa błędu braku ID w żądaniu
+            die("Missing ID in request");
+        }
     }
 }

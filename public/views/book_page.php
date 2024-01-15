@@ -60,8 +60,8 @@
 
                     <div class="cart-container">
                         <p id="book-price"></p>
-                        <form method="post" action="../../src/controllers/BookController.php?action=addToCart">
-                            <input type="hidden" name="book_id" value="<?php echo $book->getId(); ?>">
+                        <form method="post" action="addToCart?bookId=<?php echo $book->getId(); ?>">
+                            <input type="hidden" name="bookId" value="<?php echo $book->getId(); ?>">
                             <input type="submit" value="Add to Cart" class="add-to-cart-button">
                         </form>
                     </div>

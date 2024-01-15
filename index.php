@@ -17,6 +17,8 @@ Routing::get('profile','SecurityController');
 Routing::get('library','BookController');
 Routing::get('search','BookController');
 Routing::get('cart','BookController');
+Routing::get('delete','BookController');
+Routing::get('addToCart','BookController');
 
 
 Routing::run($path);

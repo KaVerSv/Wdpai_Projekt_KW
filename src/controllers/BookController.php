@@ -86,34 +86,52 @@ class BookController extends AppController {
         }
     }
 
-    public function addToCart() {
+    public function delete($queryParams = []) {
+        $userId = $queryParams['userId'] ?? null;
+        $bookId = $queryParams['bookId'] ?? null;
+
+        if ($userId !== null || $bookId !== null) {
+            $success = $this->bookRepository->removeFromCart($userId, $bookId);
+            if ($success) {
+                $this->render('cart');
+            } else {
+                die("failed to remove book");
+            }
+
+        } else {
+            // Obsługa błędu braku ID w żądaniu
+            die("Missing ID in request");
+        }
+    }
+
+    public function addToCart($queryParams = [])
+    {
         if (!isset($_SESSION['userId'])) {
             return $this->render('login');
         }
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (isset($_POST['book_id'])) {
-                $book_id = $_POST['book_id'];
 
-                // Pobierz aktualny koszyk z sesji lub utwórz nowy, jeśli nie istnieje
-                $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
+        $bookId = $queryParams['bookId'] ?? null;
 
-                // Sprawdź, czy książka już istnieje w koszyku
-                if (!in_array($book_id, $cart)) {
-                    // Dodaj książkę do koszyka
-                    $cart[] = $book_id;
+        // Sprawdź, czy bookId zostało przekazane i czy to jest poprawna liczba całkowita
+        if ($bookId !== null && is_numeric($bookId)) {
+            // Pobierz ID użytkownika z sesji
+            $userId = $_SESSION['userId'];
 
-                    // Zapisz koszyk z powrotem do sesji
-                    $_SESSION['cart'] = $cart;
-
-                    // Przekieruj użytkownika na stronę z książką po dodaniu do koszyka
-                    header('Location: book_page.php?book_id=' . $book_id);
-                    exit();
-                } else {
-                    // Jeśli książka już istnieje w koszyku, możesz obsłużyć to odpowiednim komunikatem lub akcją
-                    echo "Książka już znajduje się w koszyku.";
-                }
+            // Wykorzystaj metodę z repozytorium do dodawania do koszyka
+            if ($this->bookRepository->addToCart($userId, $bookId)) {
+                // Udało się dodać książkę do koszyka
+                // Możesz przekierować użytkownika na stronę koszyka lub inny widok
+                return $this->render('cart');
+            } else {
+                // Błąd przy dodawaniu do koszyka
+                return $this->render('error');
             }
+        } else {
+            // Nieprawidłowe bookId, możesz obsłużyć błąd lub przekierować użytkownika na inną stronę
+            return $this->render('error');
         }
-        exit();
     }
+
+
+
 }

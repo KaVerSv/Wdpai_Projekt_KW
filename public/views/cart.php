@@ -58,7 +58,7 @@
                             echo '</div>';
 
                             echo '</div>';
-                        echo '<a href="delete_book?id=' . $book->getId() . '">Delete</a>';
+                        echo '<a href="delete?userId=' . $_SESSION['userId'] . '&bookId=' . $book->getId() . '">Delete</a>';
                         echo '</div>';
 
                         $totalPrice += floatval($book->getPrice());

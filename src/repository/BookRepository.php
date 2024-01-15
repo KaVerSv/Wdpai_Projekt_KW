@@ -190,4 +190,64 @@ class BookRepository extends Repository
 
         return $result;
     }
+
+    public function removeFromCart(int $userId, int $bookId): bool {
+        $conn = $this->database->connect();
+
+        // Sprawdź, czy książka o danym ID znajduje się w koszyku użytkownika
+        $stmt = $conn->prepare('SELECT * FROM carts WHERE user_id = :userId AND book_id = :bookId');
+        $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
+        $stmt->bindParam(':bookId', $bookId, PDO::PARAM_INT);
+
+        if (!$stmt->execute()) {
+            // Obsługa błędu wykonania zapytania
+            return false;
+        }
+
+        $cartItem = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$cartItem) {
+            // Książka o danym ID nie znajduje się w koszyku użytkownika
+            return false;
+        }
+
+        // Usuń książkę z koszyka
+        $stmt = $conn->prepare('DELETE FROM carts WHERE user_id = :userId AND book_id = :bookId');
+        $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
+        $stmt->bindParam(':bookId', $bookId, PDO::PARAM_INT);
+
+        if (!$stmt->execute()) {
+            // Obsługa błędu wykonania zapytania
+            return false;
+        }
+
+        return true; // Książka została pomyślnie usunięta z koszyka
+    }
+
+    public function addToCart(int $userId, int $bookId): bool
+    {
+        // Sprawdź, czy książka o danym ID już nie znajduje się w koszyku użytkownika
+        if ($this->isBookInCart($userId, $bookId)) {
+            return false; // Książka już istnieje w koszyku
+        }
+
+        // Dodaj książkę do koszyka w bazie danych
+        $stmt = $this->database->connect()->prepare('INSERT INTO carts (user_id, book_id) VALUES (:userId, :bookId)');
+        $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
+        $stmt->bindParam(':bookId', $bookId, PDO::PARAM_INT);
+
+        return $stmt->execute(); // Zwróć true, jeśli udało się dodać książkę do koszyka
+    }
+
+    private function isBookInCart($userId, $bookId) {
+        // Sprawdź, czy taka para już istnieje w koszyku
+        $stmt = $this->database->connect()->prepare('SELECT * FROM carts WHERE user_id = :userId AND book_id = :bookId');
+        $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
+        $stmt->bindParam(':bookId', $bookId, PDO::PARAM_INT);
+
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return ($result !== false); // Zwróć true, jeśli taka para już istnieje w koszyku
+    }
 }
